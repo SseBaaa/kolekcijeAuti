@@ -45,19 +45,27 @@ namespace kolekcijeAuti
 
         private void buttonUnesi_Click(object sender, EventArgs e)
         {
-            try
+            if (Convert.ToInt32(textBoxKotaci.Text) % 2 != 0)
             {
-                Auti auti = new Auti(textBoxModel.Text, Convert.ToInt32(textBoxGodina.Text), Convert.ToInt32(textBoxKotaci.Text), "");
-                listAuta.Add(auti);
-                textBoxModel.Clear();
-                textBoxKotaci.Clear();
-                textBoxGodina.Clear();
-                MessageBox.Show("Uspješan unos!", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("nije dovzoljeno upisati neparni broj kotaca! \r\n", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception greska)
+            else
             {
-                MessageBox.Show("Pogrešan unos! \r\n" + greska.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    Auti auti = new Auti(textBoxModel.Text, Convert.ToInt32(textBoxGodina.Text), Convert.ToInt32(textBoxKotaci.Text), "");
+                    listAuta.Add(auti);
+                    textBoxModel.Clear();
+                    textBoxKotaci.Clear();
+                    textBoxGodina.Clear();
+                    MessageBox.Show("Uspješan unos!", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception greska)
+                {
+                    MessageBox.Show("Pogrešan unos! \r\n" + greska.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+            
         }
 
         private void buttonispisi_Click(object sender, EventArgs e)
@@ -75,10 +83,7 @@ namespace kolekcijeAuti
             textBoxIspis.AppendText("___________________Obradivanje_________________________\r\n");
             foreach (Auti auti in listAuta)
             {
-                if (auti.BrojKotaca % 2 != 0)
-                {
-                    MessageBox.Show("nije dovzoljeno upisati neparni broj kotaca! \r\n" , "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                
 
                 if (auti.BrojKotaca ==2)
                 {
