@@ -45,11 +45,7 @@ namespace kolekcijeAuti
 
         private void buttonUnesi_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(textBoxKotaci.Text) % 2 != 0)
-            {
-                MessageBox.Show("nije dovzoljeno upisati neparni broj kotaca! \r\n", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
+            if (Convert.ToInt32(textBoxKotaci.Text) % 2 == 0)
             {
                 try
                 {
@@ -64,6 +60,11 @@ namespace kolekcijeAuti
                 {
                     MessageBox.Show("Pogrešan unos! \r\n" + greska.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else
+            {
+               
+                MessageBox.Show("nije dovzoljeno upisati neparni broj kotaca! \r\n", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
